@@ -8,7 +8,7 @@ const NavBar = () => {
   <Navbar.Brand><img src={logo} alt="logo" hieght="45"/></Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="ml-auto">
+    <Nav className="ml-auto text-right">
       <Nav.Link><i class="fas fa-home"></i>Home</Nav.Link>
       <Nav.Link>Sign-up</Nav.Link>
       <Nav.Link>Sign-in</Nav.Link>
