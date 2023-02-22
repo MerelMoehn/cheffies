@@ -9,7 +9,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      <Container className={styles.Main}>
+      <Container fluid className={styles.Main}>
         <Switch>
         <Route exact path="/" render={() => <h1>Home page</h1>} />
         <Route exact path="/signin" render={() => <h1>Sign in</h1>} />

@@ -48,7 +48,7 @@ const SignUpForm = () => {
           }
         />
       </Col>
-      <Col className="my-auto" md={6}>
+      <Col className="my-auto mx-auto" md={4}>
         <Container className={`${appStyles.Content} p-4`}>
           <h1 className={styles.Header}>sign up</h1>
 
@@ -84,8 +84,13 @@ const SignUpForm = () => {
             ))}
 
             <Button className={`${btnStyles.Button} ${btnStyles.Stretch}`} type="submit">
-              Sign me Up!
+              Sign Me Up!
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="danger" className="mt-2">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
