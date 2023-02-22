@@ -10,36 +10,35 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
-    // This code is based on the Code Institute Walkthrough project: Moments
-    const setCurrentUser = useSetCurrentUser;
+  const setCurrentUser = useSetCurrentUser();
 
-    const [signInData, setSignInData] = useState({
-        username: "",
-        password: "",
-      });
-    const { username, password } = signInData;
+  const [signInData, setSignInData] = useState({
+    username: "",
+    password: "",
+  });
+  const { username, password } = signInData;
 
-    const history = useHistory();
+  const [errors, setErrors] = useState({});
 
-    const [errors, setErrors] = useState({})
+  const history = useHistory();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const handleChange = (event) => {
-        setSignInData({
-          ...signInData,
-          [event.target.name]: event.target.value,
-        });
-      };
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 
-      const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-          const {data} = await axios.post("/dj-rest-auth/login/", signInData);
-          setCurrentUser(data.user)
-          history.push("/");
-        } catch (err) {
-          setErrors(err.response?.data);
-        }
-      };
+  const handleChange = (event) => {
+    setSignInData({
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
     <Row>
@@ -94,6 +93,6 @@ function SignInForm() {
       </Col>
     </Row>
   );
-};
+}
 
 export default SignInForm;
