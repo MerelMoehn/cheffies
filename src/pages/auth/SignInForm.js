@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignForm.module.css";
@@ -7,11 +7,12 @@ import appStyles from "../../App.module.css";
 
 import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
     // This code is based on the Code Institute Walkthrough project: Moments
-    const setCurrentUser = useContext(SetCurrentUserContext);
+    const setCurrentUser = useSetCurrentUser;
+
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
