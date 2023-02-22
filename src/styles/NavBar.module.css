@@ -2,6 +2,11 @@
     background-color: #1A1A1A;
 }
 
+/* #basic-nav-dropdown::after{
+    display: none !important;
+    content: none !important;
+} */
+
 .NavText {
     color: #f9f9f9 !important;
     padding: 6px;
