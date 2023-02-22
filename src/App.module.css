@@ -9,10 +9,10 @@
 }
 
 .Content {
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     padding: 10px;
     border-radius: 2px;
-    border: 1px solid #dadadf;
+    border: 1px solid #E6E6E6;
   }
   
   .SignImage {
@@ -32,11 +32,11 @@
   }
   
   a {
-    color: #f9f9f9;
+    color: #1A1A1A;
   }
   
   a:hover i {
-    color: #1A1A1A;
+    color: #8F8E49;
     transition: color ease-in-out 0.2s;
   }
 
@@ -46,8 +46,8 @@
   }
   
   i {
-    color: #f9f9f9;
-    font-size: 1.3rem;
+    color: #E6E6E6;
+    font-size: 1.6rem;
     padding: 7px;
     vertical-align: middle;
   }
@@ -55,6 +55,6 @@
   i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.3s;
-    color: #1A1A1A;
+    color: #8F8E49;
   }
   
