@@ -100,7 +100,7 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top">
+    <Navbar className={styles.NavBar} fixed="top">
       <Container fluid>
         <NavLink to="/">
           <Navbar.Brand>
