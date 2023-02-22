@@ -1,0 +1,38 @@
+/* This code is partly based on the Code Institute walkthrough project Moments
+I have customized it as much as possible but used it as boilerplate code for this project */
+
+.Input {
+  background: #E6E6E6;
+  border-radius: 2px;
+  color: #7177a1;
+  text-align: center;
+}
+
+.Header {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+}
+
+.Link {
+  text-decoration: none;
+  color: #1A1A1A;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.Link span {
+    color: #8992A2;
+}
+
+.SignInCol {
+  height: 320px;
+}
+
+.SignUpCol {
+  height: 640px;
+}
