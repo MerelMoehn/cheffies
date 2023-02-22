@@ -40,7 +40,7 @@ const SignUpForm = () => {
 
   return (
     <Row>
-      <Col md={6} className={`my-auto d-none d-md-block ${styles.SignUpCol}`}>
+      <Col md={6} className={`my-auto d-none d-md-block ${styles.SignCol}`}>
         <Image
           className={`${appStyles.SignImage}`}
           src={

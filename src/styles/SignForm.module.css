@@ -29,10 +29,6 @@ I have customized it as much as possible but used it as boilerplate code for thi
     color: #8992A2;
 }
 
-.SignInCol {
-  height: 320px;
-}
-
-.SignUpCol {
+.SignCol {
   height: 680px;
 }
