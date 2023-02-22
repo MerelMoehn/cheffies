@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignForm.module.css";
@@ -7,9 +7,11 @@ import appStyles from "../../App.module.css";
 
 import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
+import { SetCurrentUserContext } from "../../App";
 
-const SignInForm = () => {
+function SignInForm() {
     // This code is based on the Code Institute Walkthrough project: Moments
+    const setCurrentUser = useContext(SetCurrentUserContext);
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
@@ -30,7 +32,8 @@ const SignInForm = () => {
       const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-          await axios.post("/dj-rest-auth/login/", signInData);
+          const {data} = await axios.post("/dj-rest-auth/login/", signInData);
+          setCurrentUser(data.user)
           history.push("/");
         } catch (err) {
           setErrors(err.response?.data);
