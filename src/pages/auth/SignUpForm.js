@@ -5,7 +5,7 @@ import styles from "../../styles/SignForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
+import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
@@ -16,7 +16,10 @@ const SignUpForm = () => {
         password2: "",
       });
     const { username, password1, password2 } = signUpData;
+
     const history = useHistory();
+
+    const [errors, setErrors] = useState({})
 
     const handleChange = (event) => {
         setSignUpData({
@@ -54,14 +57,32 @@ const SignUpForm = () => {
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control className={styles.Input} type="text" placeholder="Enter Username" name="username" value={username} onChange={handleChange} />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="danger" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
             <Form.Group controlId="password1">
               <Form.Label className="d-none">password1</Form.Label>
               <Form.Control className={styles.Input} type="password" placeholder="Enter Password" name="password1" value={password1} onChange={handleChange}/>
             </Form.Group>
+            {errors.password1?.map((message, idx) => (
+              <Alert key={idx} variant="danger">
+                {message}
+              </Alert>
+            ))}
+            
             <Form.Group controlId="password2">
               <Form.Label className="d-none">password2</Form.Label>
               <Form.Control className={styles.Input} type="password" placeholder="Confirm Password" name="password2" value={password2} onChange={handleChange} />
             </Form.Group>
+            {errors.password2?.map((message, idx) => (
+              <Alert key={idx} variant="danger">
+                {message}
+              </Alert>
+            ))}
+
             <Button className={`${btnStyles.Button} ${btnStyles.Stretch}`} type="submit">
               Sign me Up!
             </Button>
