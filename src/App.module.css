@@ -1,0 +1,41 @@
+.App {
+    font-family:'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.Main { 
+    padding-top: 100px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: #f9f9f9;
+  }
+  
+  a:hover i {
+    color: #1A1A1A;
+    transition: color ease-in-out 0.2s;
+  }
+
+  a:hover {
+    font-style: italic;
+    text-decoration: none;
+  }
+  
+  i {
+    color: #f9f9f9;
+    font-size: 1.3rem;
+    padding: 7px;
+    vertical-align: middle;
+  }
+  
+  i:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #1A1A1A;
+  }
+  

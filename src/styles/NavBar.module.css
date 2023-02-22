@@ -1,0 +1,13 @@
+.NavBar {
+    background-color: #8992A2;
+    border: 1px solid #ffffff;
+}
+
+.NavText {
+    color: #f9f9f9 !important;
+    padding: 6px;
+}
+
+.Active i {
+    color:#1A1A1A;
+}
