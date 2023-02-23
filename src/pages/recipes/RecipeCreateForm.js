@@ -30,7 +30,7 @@ function RecipeCreateForm() {
   });
   const { title, instructions, image, cooking_time, prep_time, category } =
     recipeData;
-
+  console.log("image:", image)
   const imageInput = useRef(null);
   const history = useHistory();
 
@@ -61,8 +61,9 @@ function RecipeCreateForm() {
     formData.append("cooking_time", cooking_time);
     formData.append("prep_time", prep_time);
     formData.append("category", category);
-
+    console.log(image)
     try {
+      console.log(formData.image)
       const { data } = await axiosReq.post("/recipes/", formData);
       history.push(`/recipes/${data.id}`);
     } catch (err) {
