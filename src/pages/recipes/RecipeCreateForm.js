@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 
 import Upload from "../../assets/uploadimage.png";
@@ -24,10 +25,11 @@ function RecipeCreateForm() {
     instructions: "",
     image: "",
     cooking_time: "",
-    prep_time:"",
-    category:"",
+    prep_time: "",
+    category: "",
   });
-  const { title, instructions, image, cooking_time, prep_time, category } = recipeData;
+  const { title, instructions, image, cooking_time, prep_time, category } =
+    recipeData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -37,7 +39,9 @@ function RecipeCreateForm() {
       ...recipeData,
       [event.target.name]: event.target.value,
     });
+    console.log(recipeData)
   };
+
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -50,6 +54,7 @@ function RecipeCreateForm() {
   };
 
   const handleSubmit = async (event) => {
+    console.log(event)
     event.preventDefault();
     const formData = new FormData();
 
@@ -82,13 +87,36 @@ function RecipeCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Label>Category</Form.Label>
-      <select value={category} onChange={handleChange}>
-        <option name="starter" value="starter">Starter</option>
-        <option name="main" value="main">Main</option>
-        <option name="snack" value="snack">Snack</option>
-        <option name="dessert"value="dessert">Dessert</option>
-      </select>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>Category</Form.Label>
+        <Form.Control 
+        as="select"
+        name="category"
+        onChange={handleChange}>
+          <option>
+            Starter
+          </option>
+          <option>
+            Main
+          </option>
+          <option>
+            Snack
+          </option>
+          <option>
+            Dessert
+          </option>
+        </Form.Control>
+      </Form.Group>
+      {errors?.category?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Instructions</Form.Label>
         <Form.Control
@@ -98,6 +126,13 @@ function RecipeCreateForm() {
           value={instructions}
           onChange={handleChange}
         />
+      </Form.Group>
+      {errors?.instructions?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
         <Form.Label>Preparation time:</Form.Label>
         <Form.Control
           type="integer"
@@ -105,6 +140,13 @@ function RecipeCreateForm() {
           value={prep_time}
           onChange={handleChange}
         />
+      </Form.Group>
+      {errors?.prep_time?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
         <Form.Label>Cooking time:</Form.Label>
         <Form.Control
           type="integer"
@@ -113,8 +155,16 @@ function RecipeCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.cooking_time?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-      <Button className={`${btnStyles.Button}`} onClick={() => history.goBack()}>
+      <Button
+        className={`${btnStyles.Button}`}
+        onClick={() => history.goBack()}
+      >
         Cancel
       </Button>
       <Button className={`${btnStyles.Button}`} type="submit">
@@ -134,7 +184,7 @@ function RecipeCreateForm() {
               {image ? (
                 <>
                   <figure>
-                    <Image className={appStyles.Image} src={image}/>
+                    <Image className={appStyles.Image} src={image} />
                   </figure>
                   <div>
                     <Form.Label
@@ -150,10 +200,7 @@ function RecipeCreateForm() {
                   className="d-flex justify-content-center"
                   htmlFor="image-upload"
                 >
-                  <Asset
-                    src={Upload}
-                    message="Click to upload an image"
-                  />
+                  <Asset src={Upload} message="Click to upload an image" />
                 </Form.Label>
               )}
 
@@ -165,6 +212,11 @@ function RecipeCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
