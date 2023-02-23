@@ -39,9 +39,7 @@ function RecipeCreateForm() {
       ...recipeData,
       [event.target.name]: event.target.value,
     });
-    console.log(recipeData)
   };
-
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -54,7 +52,6 @@ function RecipeCreateForm() {
   };
 
   const handleSubmit = async (event) => {
-    console.log(event)
     event.preventDefault();
     const formData = new FormData();
 
@@ -94,22 +91,11 @@ function RecipeCreateForm() {
       ))}
       <Form.Group>
         <Form.Label>Category</Form.Label>
-        <Form.Control 
-        as="select"
-        name="category"
-        onChange={handleChange}>
-          <option>
-            Starter
-          </option>
-          <option>
-            Main
-          </option>
-          <option>
-            Snack
-          </option>
-          <option>
-            Dessert
-          </option>
+        <Form.Control as="select" name="category" onChange={handleChange}>
+          <option value="starter">Starter</option>
+          <option value="main">Main</option>
+          <option value="snack">Snack</option>
+          <option value="dessert">Dessert</option>
         </Form.Control>
       </Form.Group>
       {errors?.category?.map((message, idx) => (
