@@ -12,6 +12,8 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/RecipesPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useLocation } from "react-router-dom/cjs/react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function RecipesPage({ message, filter = "" }) {
     const [recipes, setRecipes] = useState({ results: [] });
@@ -60,9 +62,17 @@ function RecipesPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {recipes.results.length ? (
+                <InfiniteScroll 
+                children={
               recipes.results.map((recipe) => (
                 <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
               ))
+              }
+              dataLength={recipes.results.length}
+              loader={<Asset spinner/>}
+              hasMore={!!recipes.next}
+              next={() => fetchMoreData(recipes, setRecipes)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
