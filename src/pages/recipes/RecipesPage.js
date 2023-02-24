@@ -17,11 +17,12 @@ function RecipesPage({ message, filter = "" }) {
     const [recipes, setRecipes] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
+    const [query, setQuery] = useState("");
   
     useEffect(() => {
       const fetchRecipes = async () => {
         try {
-          const { data } = await axiosReq.get(`/recipes/?${filter}`);
+          const { data } = await axiosReq.get(`/recipes/?${filter}search=${query}`);
           setRecipes(data);
           setHasLoaded(true);
         } catch (err) {
@@ -30,13 +31,32 @@ function RecipesPage({ message, filter = "" }) {
       };
   
       setHasLoaded(false);
-      fetchRecipes();
-    }, [filter, pathname]);
+      const timer = setTimeout(() => {
+        fetchRecipes();
+      }, 500);
+  
+      return () => {
+        clearTimeout(timer);
+      };
+    }, [filter, query, pathname]);
   
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
+        <i />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search recipes"
+          />
+        </Form>
         {hasLoaded ? (
           <>
             {recipes.results.length ? (
