@@ -13,18 +13,21 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function IngredientCreateForm() {
   const [errors, setErrors] = useState({});
-  const { recipeId } = useParams();
+  const { id } = useParams();
+  const currentUser = useCurrentUser;
 
   const [ingredientData, setIngredientData] = useState({
-    recipe: {recipeId},
+    // owner: currentUser.id,
+    recipe: id,
     name: "",
     amount_required: "",
     measure_unit: "",
   });
-  const { recipe, name, amount_required, measure_unit } =
+  const { owner, recipe, name, amount_required, measure_unit } =
     ingredientData;
   const history = useHistory();
 
@@ -39,6 +42,7 @@ function IngredientCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
+    // formData.append("owner", owner);
     formData.append("recipe", recipe);
     formData.append("name", name);
     formData.append("amount_required", amount_required);
@@ -46,7 +50,7 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
-      history.push(`/recipes/${recipeId}`);
+      history.push(`/recipes/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -57,6 +61,8 @@ function IngredientCreateForm() {
 
   const textFields = (
     <div className="text-center">
+      <Row>
+        <Col>
       <Form.Group>
         <Form.Label>Ingredient:</Form.Label>
         <Form.Control
@@ -71,6 +77,8 @@ function IngredientCreateForm() {
           {message}
         </Alert>
       ))}
+      </Col>
+      <Col>
         <Form.Group>
         <Form.Label>Amount:</Form.Label>
         <Form.Control
@@ -85,6 +93,8 @@ function IngredientCreateForm() {
           {message}
         </Alert>
       ))}
+      </Col>
+      <Col>
       <Form.Group>
         <Form.Label>Unit:</Form.Label>
         <Form.Control as="select" name="measure_unit" onChange={handleChange}>
@@ -103,6 +113,8 @@ function IngredientCreateForm() {
           {message}
         </Alert>
       ))}
+      </Col>
+      </Row>
 
       <Button
         className={`${btnStyles.Button}`}
