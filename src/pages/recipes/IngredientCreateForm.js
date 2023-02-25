@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,23 +13,41 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 function IngredientCreateForm() {
   const [errors, setErrors] = useState({});
   const { id } = useParams();
-  const currentUser = useCurrentUser;
+
+
+  const currentUser = useCurrentUser();
+
 
   const [ingredientData, setIngredientData] = useState({
-    // owner: currentUser.id,
     recipe: id,
     name: "",
     amount_required: "",
     measure_unit: "",
   });
-  const { owner, recipe, name, amount_required, measure_unit } =
+  const { recipe, name, amount_required, measure_unit } =
     ingredientData;
   const history = useHistory();
+
+  // useEffect(() => {
+  //     const handleMount = async () => {
+  //       try {
+  //         const [{ data: recipe }] = await Promise.all([
+  //           axiosReq.get(`/recipes/${id}`),
+  //         ]);
+  //         setIngredientData({ recipe: [recipe] });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+  
+  //     handleMount();
+  //   }, [id]);
+  
 
   const handleChange = (event) => {
     setIngredientData({
@@ -47,6 +65,7 @@ function IngredientCreateForm() {
     formData.append("name", name);
     formData.append("amount_required", amount_required);
     formData.append("measure_unit", measure_unit);
+    formData.append("owner", currentUser?.profile_id);
 
     try {
       await axiosReq.post("/ingredients/", formData);
@@ -97,7 +116,7 @@ function IngredientCreateForm() {
       <Col>
       <Form.Group>
         <Form.Label>Unit:</Form.Label>
-        <Form.Control as="select" name="measure_unit" onChange={handleChange}>
+        <Form.Control as="select" name="measure_unit" defaultValue="g" onChange={handleChange}>
           <option value="cup">cup(s)</option>
           <option value="g">gram</option>
           <option value="tablespoon">tablespoon(s)</option>
