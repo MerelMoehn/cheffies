@@ -9,6 +9,7 @@ import RecipeCreateForm from "./pages/recipes/RecipeCreateForm";
 import RecipePage from "./pages/recipes/RecipePage";
 import RecipesPage from "./pages/recipes/RecipesPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import IngredientCreateForm from "./pages/recipes/IngredientCreateForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -48,6 +49,11 @@ function App() {
             exact
             path="/recipes/create"
             render={() => <RecipeCreateForm />}
+          />
+            <Route
+            exact
+            path="/recipes/:id/ingredients"
+            render={() => <IngredientCreateForm />}
           />
           <Route exact path="/recipes/:id" render={() => <RecipePage />} />
           <Route render={() => <p>Page not found!</p>} />
