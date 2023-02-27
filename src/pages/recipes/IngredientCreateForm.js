@@ -42,7 +42,6 @@ function IngredientCreateForm() {
         ]);
         setRecipeSubmitted(recipe);
         setIngredientSubmitted(ingredients);
-        console.log(ingredients);
       } catch (err) {
         console.log(err);
       }
@@ -50,6 +49,17 @@ function IngredientCreateForm() {
 
     handleMount();
   }, [id]);
+
+  // const handleIngredientdisplay = async () => {
+  //   try {
+  //     const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
+  //     setIngredientSubmitted((prevIngredientSubmitted) => ({
+  // //       ...prevIngredientSubmitted,
+  //          results: [data, ...prevIngredientSubmitted.results]
+  //     }));
+  //   } catch (err) {}
+  // };
+
 
   const handleChange = (event) => {
     setIngredientData({
@@ -70,6 +80,10 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
+  //     const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
+  //     setIngredientSubmitted((prevIngredientSubmitted) => ({
+  // //       ...prevIngredientSubmitted,
+  //          results: [data, ...prevIngredientSubmitted.results]
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
