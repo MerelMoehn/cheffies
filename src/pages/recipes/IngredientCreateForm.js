@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
+import { Card, Media } from "react-bootstrap";
 
 
 import styles from "../../styles/IngredientsCreateEditForm.module.css";
@@ -22,6 +23,8 @@ function IngredientCreateForm() {
 
   const currentUser = useCurrentUser();
 
+  const [recipeSubmitted, setRecipeSubmitted] = useState('');
+
 
   const [ingredientData, setIngredientData] = useState({
     recipe: id,
@@ -33,20 +36,21 @@ function IngredientCreateForm() {
     ingredientData;
   const history = useHistory();
 
-  // useEffect(() => {
-  //     const handleMount = async () => {
-  //       try {
-  //         const [{ data: recipe }] = await Promise.all([
-  //           axiosReq.get(`/recipes/${id}`),
-  //         ]);
-  //         setIngredientData({ recipe: [recipe] });
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     };
-  
-  //     handleMount();
-  //   }, [id]);
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const [{ data: recipe }] = await Promise.all([
+          axiosReq.get(`/recipes/${id}`),
+        ]);
+        setRecipeSubmitted(recipe);
+        console.log(recipe);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [id]);
   
 
   const handleChange = (event) => {
@@ -60,7 +64,6 @@ function IngredientCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    // formData.append("owner", owner);
     formData.append("recipe", recipe);
     formData.append("name", name);
     formData.append("amount_required", amount_required);
@@ -153,11 +156,27 @@ function IngredientCreateForm() {
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <div className="d-md-none">{textFields}</div>
+          > 
+<Card className={styles.Recipe}>
+          <Card.Body>
+            <Media className="align-items-center justify-content-between">
+              <div>
+              <Card.Title>{recipeSubmitted.title}</Card.Title>
+              </div>
+              <div>
+              Category: {recipeSubmitted.category}
+              </div>
+            </Media>
+          </Card.Body>
+            <Card.Img src={recipeSubmitted.image} alt={recipeSubmitted.title} />
+          <Card.Body>
+            <Card.Text>Cooking time: {recipeSubmitted.cooking_time}min Preparation time: {recipeSubmitted.prep_time}min</Card.Text>
+            <Card.Text>Instructions: {recipeSubmitted.instructions}</Card.Text>
+          </Card.Body>
+        </Card>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
