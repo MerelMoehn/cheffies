@@ -72,7 +72,6 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
-      history.push(`/recipes/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -145,7 +144,10 @@ function IngredientCreateForm() {
         Cancel
       </Button>
       <Button className={`${btnStyles.Button}`} type="submit">
-        Save
+        Add
+      </Button>
+      <Button className={`${btnStyles.Button}`} onClick={() => history.push(`/recipes/${id}`)}>
+        Done
       </Button>
     </div>
   );
