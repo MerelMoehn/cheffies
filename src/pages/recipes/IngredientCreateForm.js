@@ -22,7 +22,7 @@ function IngredientCreateForm() {
   const currentUser = useCurrentUser();
 
   const [recipeSubmitted, setRecipeSubmitted] = useState("");
-  const [ingredientSubmitted, setIngredientSubmitted] = useState([{}]);
+  const [ingredientSubmitted, setIngredientSubmitted] = useState({ results: [] });
 
   const [ingredientData, setIngredientData] = useState({
     recipe: id,
@@ -41,7 +41,7 @@ function IngredientCreateForm() {
           axiosReq.get(`/ingredients/?recipe=${id}`),
         ]);
         setRecipeSubmitted(recipe);
-        setIngredientSubmitted([ingredients]);
+        setIngredientSubmitted(ingredients);
         console.log(ingredients);
       } catch (err) {
         console.log(err);
@@ -185,8 +185,8 @@ function IngredientCreateForm() {
         </Col>
         <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>
-            {ingredientSubmitted?.map((ingredient, idx) => (
-              <p key={idx}>{ingredient.name}</p>
+            {ingredientSubmitted.results.map((ingredient) => (
+              <p key={ingredient.id}>{ingredient.name}</p>
             ))}
             {textFields}
           </Container>
