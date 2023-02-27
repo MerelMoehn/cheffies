@@ -82,8 +82,7 @@ const Recipe = (props) => {
           </Link>
           <Card.Body>
             {title && <Card.Title className="text-center">{title}</Card.Title>}
-            {cooking_time && <Card.Text>{cooking_time}</Card.Text>}
-            {prep_time && <Card.Text>{prep_time}</Card.Text>}
+            {cooking_time && prep_time && <Card.Text>{cooking_time} {prep_time}</Card.Text>}
             {instructions && <Card.Text>{instructions}</Card.Text>}
             <div className={styles.recipeBar}>
               {is_owner ? (
