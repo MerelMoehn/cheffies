@@ -12,7 +12,7 @@ import styles from "../../styles/IngredientsCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function IngredientCreateForm() {
@@ -22,8 +22,10 @@ function IngredientCreateForm() {
   const currentUser = useCurrentUser();
 
   const [recipeSubmitted, setRecipeSubmitted] = useState("");
-  const [ingredientSubmitted, setIngredientSubmitted] = useState({ results: [] });
-  console.log(ingredientSubmitted)
+  const [ingredientSubmitted, setIngredientSubmitted] = useState({
+    results: [],
+  });
+  console.log(ingredientSubmitted);
 
   const [ingredientData, setIngredientData] = useState({
     recipe: id,
@@ -60,7 +62,7 @@ function IngredientCreateForm() {
     try {
       const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
       setIngredientSubmitted(data);
-    console.log("submitted:", ingredientSubmitted)
+      console.log("submitted:", ingredientSubmitted);
     } catch (err) {
       console.log(err);
     }
@@ -84,6 +86,15 @@ function IngredientCreateForm() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+    }
+  };
+
+  const handleDelete = async (ingredientId) => {
+    try {
+      await axiosRes.delete(`/ingredients/${ingredientId}/`);
+      handleDisplayIngredients();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -192,11 +203,21 @@ function IngredientCreateForm() {
           </Container>
         </Col>
         <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
           <Container className={appStyles.Content}>
+            <h3>Ingredients:</h3>
             {ingredientSubmitted.results.map((ingredient) => (
-              <p key={ingredient.id}>{ingredient.name}</p>
+              <p key={ingredient.id}>
+                {ingredient.amount_required}
+                {ingredient.measure_unit}
+                {ingredient.name}
+                <i
+                  className="fas fa-trash-alt"
+                  onClick={() => handleDelete(ingredient.id)}
+                  aria-label="delete"
+                />
+              </p>
             ))}
-            {textFields}
           </Container>
         </Col>
       </Row>

@@ -81,8 +81,8 @@ function RecipeEditForm() {
     formData.append("category", category);
 
     try {
-      const { data } = await axiosReq.put(`/recipes/${id}/`, formData);
-      history.push(`/recipes/${id}/`);
+      const {data}= await axiosReq.put(`/recipes/${id}/`, formData);
+      history.push(`/recipes/${data.id}/ingredients`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
