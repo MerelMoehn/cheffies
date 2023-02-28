@@ -62,7 +62,6 @@ function IngredientCreateForm() {
     try {
       const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
       setIngredientSubmitted(data);
-      console.log("submitted:", ingredientSubmitted);
     } catch (err) {
       console.log(err);
     }

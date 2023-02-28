@@ -12,15 +12,20 @@ import Recipe from "./Recipe";
 function RecipePage() {
     const { id } = useParams();
     const [recipe, setRecipe] = useState({results: []});
+    const [ingredients, setIngredients] = useState({
+      results: [],
+    });
+
 
     useEffect(() => {
         const handleMount = async () => {
           try {
-            const [{ data: recipe }] = await Promise.all([
+            const [{ data: recipe }, {data: ingredients}] = await Promise.all([
               axiosReq.get(`/recipes/${id}`),
+              await axiosReq.get(`/ingredients/?recipe=${id}`)
             ]);
             setRecipe({ results: [recipe] });
-            console.log(recipe);
+            setIngredients(ingredients);
           } catch (err) {
             console.log(err);
           }
@@ -35,6 +40,14 @@ function RecipePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles for mobile</p>
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
+        <h3>Ingredients:</h3>
+            {ingredients.results.map((ingredient) => (
+              <p key={ingredient.id}>
+                {ingredient.amount_required}
+                {ingredient.measure_unit}
+                {ingredient.name}
+              </p>
+            ))}
         <Container className={appStyles.Content}>
           Comments
         </Container>
