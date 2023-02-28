@@ -23,6 +23,7 @@ function IngredientCreateForm() {
 
   const [recipeSubmitted, setRecipeSubmitted] = useState("");
   const [ingredientSubmitted, setIngredientSubmitted] = useState({ results: [] });
+  console.log(ingredientSubmitted)
 
   const [ingredientData, setIngredientData] = useState({
     recipe: id,
@@ -36,12 +37,10 @@ function IngredientCreateForm() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: recipe }, { data: ingredients }] = await Promise.all([
+        const [{ data: recipe }] = await Promise.all([
           axiosReq.get(`/recipes/${id}`),
-          axiosReq.get(`/ingredients/?recipe=${id}`),
         ]);
         setRecipeSubmitted(recipe);
-        setIngredientSubmitted(ingredients);
       } catch (err) {
         console.log(err);
       }
@@ -50,22 +49,21 @@ function IngredientCreateForm() {
     handleMount();
   }, [id]);
 
-  // const handleIngredientdisplay = async () => {
-  //   try {
-  //     const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
-  //     setIngredientSubmitted((prevIngredientSubmitted) => ({
-  // //       ...prevIngredientSubmitted,
-  //          results: [data, ...prevIngredientSubmitted.results]
-  //     }));
-  //   } catch (err) {}
-  // };
-
-
   const handleChange = (event) => {
     setIngredientData({
       ...ingredientData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleDisplayIngredients = async () => {
+    try {
+      const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
+      setIngredientSubmitted(data);
+    console.log("submitted:", ingredientSubmitted)
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -80,10 +78,7 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
-  //     const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
-  //     setIngredientSubmitted((prevIngredientSubmitted) => ({
-  // //       ...prevIngredientSubmitted,
-  //          results: [data, ...prevIngredientSubmitted.results]
+      handleDisplayIngredients();
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
