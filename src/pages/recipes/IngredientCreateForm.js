@@ -176,7 +176,6 @@ function IngredientCreateForm() {
                 {recipeSubmitted.title} {recipeSubmitted.category}
               </Card.Header>
               <Card.Img
-                className={`${appStyles.Image}`}
                 src={recipeSubmitted.image}
                 alt={recipeSubmitted.title}
               />
