@@ -73,14 +73,16 @@ function RecipeEditForm() {
 
     formData.append("title", title);
     formData.append("instructions", instructions);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput?.current?.files[0]) {
+        formData.append("image", imageInput.current.files[0]);
+      }
     formData.append("cooking_time", cooking_time);
     formData.append("prep_time", prep_time);
     formData.append("category", category);
 
     try {
-      const { data } = await axiosReq.post("/recipes/", formData);
-      history.push(`/recipes/${data.id}/ingredients`);
+      const { data } = await axiosReq.put(`/recipes/${id}/`, formData);
+      history.push(`/recipes/${id}/`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
