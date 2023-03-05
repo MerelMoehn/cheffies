@@ -104,7 +104,7 @@ const Recipe = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title className={styles.Titles}>{title}</Card.Title>}
         <span>Last updated: {updated_at}</span>
         {cooking_time && prep_time && (
           <Card.Text>

@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/Recipe.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
@@ -40,7 +41,7 @@ function RecipePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
         <Container className={appStyles.Content}>
-        <h3>Ingredients:</h3>
+        <p className={styles.Titles}>Ingredients:</p>
             {ingredients.results.map((ingredient) => (
               <ul>
               <li key={ingredient.id}>
@@ -52,7 +53,7 @@ function RecipePage() {
             ))}
             </Container>
             <Container className={appStyles.Content}>
-              <h3>Instructions:</h3>
+              <p className={styles.Titles}>Instructions:</p>
               {recipe.results.map((recipe) => (
               <p key={recipe.id}>
                 {recipe.instructions}

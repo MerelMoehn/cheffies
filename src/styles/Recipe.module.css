@@ -5,6 +5,11 @@
     margin-bottom: 16px;
     text-align: center;
   }
+
+.Titles {
+  font-size: 20px;
+  font-weight: bold;
+}
   
   .Recipe figure,
   h5 {
