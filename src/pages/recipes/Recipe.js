@@ -86,7 +86,6 @@ const Recipe = (props) => {
                 {owner}
               </Link>
               <div className="d-flex align-items-center">
-                <span>{updated_at}</span>
                 <span>Category: {category}</span>
                 {is_owner && recipePage && <EditDropDown handleEdit={handleEdit} handleDelete={handleDelete}/>}
               </div>
@@ -97,7 +96,8 @@ const Recipe = (props) => {
           </Link>
           <Card.Body>
             {title && <Card.Title className="text-center">{title}</Card.Title>}
-            {cooking_time && prep_time && <Card.Text>{cooking_time} {prep_time}</Card.Text>}
+            <span>Last updated: {updated_at}</span>
+            {cooking_time && prep_time && <Card.Text><i class="fa-solid fa-tarp"></i>{prep_time}min <i class="fa-solid fa-fire-burner"></i>{cooking_time}min</Card.Text>}
             {instructions && <Card.Text>{instructions}</Card.Text>}
             <div className={styles.recipeBar}>
               {is_owner ? (
