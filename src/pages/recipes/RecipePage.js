@@ -51,7 +51,11 @@ function RecipePage() {
             </Container>
             <Container className={appStyles.Content}>
               <h3>Instructions:</h3>
-              {recipe.results[0].instructions}
+              {recipe.results.map((recipe) => (
+              <p key={recipe.id}>
+                {recipe.instructions}
+              </p>
+            ))}
               </Container>
         <Container className={appStyles.Content}>
           Comments
