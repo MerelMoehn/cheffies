@@ -42,11 +42,13 @@ function RecipePage() {
         <Container className={appStyles.Content}>
         <h3>Ingredients:</h3>
             {ingredients.results.map((ingredient) => (
-              <p key={ingredient.id}>
+              <ul>
+              <li key={ingredient.id}>
                 {ingredient.amount_required}
-                {ingredient.measure_unit}
+                {ingredient.measure_unit}{" "} 
                 {ingredient.name}
-              </p>
+              </li>
+              </ul>
             ))}
             </Container>
             <Container className={appStyles.Content}>
