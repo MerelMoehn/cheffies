@@ -108,8 +108,8 @@ const Recipe = (props) => {
         <span>Last updated: {updated_at}</span>
         {cooking_time && prep_time && (
           <Card.Text>
-            <i class="fa-solid fa-tarp"></i>
-            {prep_time}min <i class="fa-solid fa-fire-burner"></i>
+            <i className="fa-solid fa-tarp"></i>
+            {prep_time}min <i className="fa-solid fa-fire-burner"></i>
             {cooking_time}min
           </Card.Text>
         )}
