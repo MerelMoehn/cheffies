@@ -13,7 +13,7 @@ function RecipePage() {
     const { id } = useParams();
     const [recipe, setRecipe] = useState({results: []});
     const [ingredients, setIngredients] = useState({
-      results: [],
+      results: []
     });
 
 
@@ -38,8 +38,8 @@ function RecipePage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage/>
+        <Container className={appStyles.Content}>
         <h3>Ingredients:</h3>
             {ingredients.results.map((ingredient) => (
               <p key={ingredient.id}>
@@ -48,6 +48,11 @@ function RecipePage() {
                 {ingredient.name}
               </p>
             ))}
+            </Container>
+            <Container className={appStyles.Content}>
+              <h3>Instructions:</h3>
+              {recipe.results[0].instructions}
+              </Container>
         <Container className={appStyles.Content}>
           Comments
         </Container>
