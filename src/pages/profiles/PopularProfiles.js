@@ -4,7 +4,9 @@ import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Profile from "./Profile";
 
+// This code is based on the Code Institute Walkthrough project Moments
 const PopularProfiles = ({mobile}) => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState({
@@ -43,12 +45,12 @@ const PopularProfiles = ({mobile}) => {
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <p key={profile.id}>{profile.owner}</p>
+                <Profile profile={profile} key={profile.id} mobile />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-              <p key={profile.id}>{profile.owner}</p>
+                <Profile profile={profile} key={profile.id} />
             ))
           )}
         </>
