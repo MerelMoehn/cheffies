@@ -5,9 +5,8 @@ import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 
-// This code is based on the Code Institute Walkthrough project Moments
-const PopularProfiles = ({mobile}) => {
-    const { popularProfiles } = useProfileData;
+const PopularProfiles = ({ mobile }) => {
+  const { popularProfiles } = useProfileData();
 
   return (
     <Container
@@ -21,12 +20,12 @@ const PopularProfiles = ({mobile}) => {
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <Profile profile={profile} key={profile.id} mobile />
+                <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-                <Profile profile={profile} key={profile.id} />
+              <Profile key={profile.id} profile={profile} />
             ))
           )}
         </>
