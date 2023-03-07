@@ -13,6 +13,9 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
 import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function RecipePage() {
   const { id } = useParams();
@@ -28,11 +31,12 @@ function RecipePage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: recipe }, { data: ingredients }, { data: comments }] = await Promise.all([
-          axiosReq.get(`/recipes/${id}`),
-          axiosReq.get(`/ingredients/?recipe=${id}`),
-          axiosReq.get(`/comments/?recipe=${id}`),
-        ]);
+        const [{ data: recipe }, { data: ingredients }, { data: comments }] =
+          await Promise.all([
+            axiosReq.get(`/recipes/${id}`),
+            axiosReq.get(`/ingredients/?recipe=${id}`),
+            axiosReq.get(`/comments/?recipe=${id}`),
+          ]);
         setRecipe({ results: [recipe] });
         setIngredients(ingredients);
         setComments(comments);
@@ -75,18 +79,29 @@ function RecipePage() {
               setRecipe={setRecipe}
               setComments={setComments}
             />
-            ) : comments.results.length ? (
-              "Comments"
-            ) : null}
-            {comments.results.length ? (
-              comments.results.map((comment) => (
-                <Comment key={comment.id} {...comment} setRecipe={setRecipe} setComments={setComments} />
-              ))
-            ) : currentUser ? (
-              <span>No comments yet, be the first to comment!</span>
-            ) : (
-              <span>No comments... yet</span>
-            )}
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
+          {comments.results.length ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setRecipe={setRecipe}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
+          ) : currentUser ? (
+            <span>No comments yet, be the first to comment!</span>
+          ) : (
+            <span>No comments... yet</span>
+          )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
