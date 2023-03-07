@@ -19,6 +19,10 @@ import {
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
+import Recipe from "../recipes/Recipe";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import NoResults from "../../assets/no-results.png";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -28,17 +32,21 @@ function ProfilePage() {
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+  const [profileRecipes, setProfileRecipes] = useState({ results: [] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
+        const [{ data: pageProfile }, { data: profileRecipes }] = await Promise.all([
           axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/recipes/?owner__profile=${id}`),
+          
         ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+        setProfileRecipes(profileRecipes);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -101,8 +109,24 @@ function ProfilePage() {
   const mainProfileRecipes = (
     <>
       <hr />
-      <p className="text-center">Profile owner's recipes</p>
+      <p className="text-center">Chef {profile?.owner}'s recipes</p>
       <hr />
+      {profileRecipes.results.length ? (
+        <InfiniteScroll
+          children={profileRecipes.results.map((recipe) => (
+            <Recipe key={recipe.id} {...recipe} setRecipes={setProfileRecipes} />
+          ))}
+          dataLength={profileRecipes.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileRecipes.next}
+          next={() => fetchMoreData(profileRecipes, setProfileRecipes)}
+        />
+      ) : (
+        <Asset
+          src={NoResults}
+          message={`No results found, ${profile?.owner} hasn't created recipes yet.`}
+        />
+      )}
     </>
   );
 
