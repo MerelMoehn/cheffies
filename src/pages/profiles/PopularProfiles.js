@@ -16,7 +16,9 @@ const PopularProfiles = ({ mobile }) => {
     >
       {popularProfiles.results.length ? (
         <>
-          <p>Top Chef's:</p>
+          <span>
+            <i class="fa-regular fa-circle-user"></i>Top Chef's:
+          </span>
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (

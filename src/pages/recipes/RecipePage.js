@@ -17,6 +17,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import PopularRecipes from "./PopularRecipes";
 
 function RecipePage() {
   const { id } = useParams();
@@ -106,6 +107,7 @@ function RecipePage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+      <PopularRecipes/>
       <PopularProfiles />
       </Col>
     </Row>
