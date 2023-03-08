@@ -1,17 +1,21 @@
 .NavBar {
     background-color: #1A1A1A;
+    align-items: center;
 }
 
-/* #basic-nav-dropdown::after{
-    display: none !important;
-    content: none !important;
-} */
+nav {
+    align-items: center;
+}
 
 .NavText {
     color: #f9f9f9 !important;
     padding: 6px;
 }
 
-.Active i {
+.NavLink {
+    padding: 5px;
+  }
+
+.NavIcon {
     color:#E6E6E6;
 }

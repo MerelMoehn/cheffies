@@ -45,8 +45,8 @@ function RecipesPage({ message, filter = "" }) {
     }, [filter, query, pathname]);
   
   return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={6}>
+    <Row className="h-100 d-flex justify-content-between">
+      <Col className="py-2 p-0 p-lg-4" lg={6}>
         <PopularProfiles mobile/>
         <i />
         <Form
@@ -87,7 +87,7 @@ function RecipesPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={3} className="d-none d-lg-block p-0 p-lg-2">
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-4">
         <PopularRecipes />
         <PopularProfiles />
       </Col>

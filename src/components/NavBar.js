@@ -30,16 +30,25 @@ const NavBar = () => {
         className={styles.NavText}
         activeClassName={styles.Active}
       >
-        <i className="far fa-plus-square"></i>
+        <i className={`far fa-plus-square ${styles.NavIcon}`}></i>
       </NavLink>
       <NavDropdown
         title={
           <span>
-            <i className="fa-solid fa-bars"></i>
+            <i className={`fa-solid fa-bars ${styles.NavIcon}`}></i>
           </span>
         }
         id="basic-nav-dropdown"
       >
+        <NavDropdown.Item>
+          <NavLink
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/"
+          >
+            <i className="fa-solid fa-house"></i>Home
+          </NavLink>
+        </NavDropdown.Item>
         <NavDropdown.Item>
           <NavLink
             className={styles.NavLink}
