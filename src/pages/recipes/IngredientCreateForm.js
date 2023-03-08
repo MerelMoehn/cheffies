@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
+import Badge from "react-bootstrap/Badge";
 import { Card } from "react-bootstrap";
 
 import styles from "../../styles/IngredientsCreateEditForm.module.css";
@@ -179,13 +180,16 @@ function IngredientCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Col className="py-2 p-0 p-md-2" lg={6}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Card className={styles.Recipe}>
               <Card.Header>
-                {recipeSubmitted.title} {recipeSubmitted.category}
+                <p className={appStyles.Titles}>{recipeSubmitted.title}</p>
+                <Badge className={styles.Category} pill variant="secondary">
+                {recipeSubmitted.category}
+            </Badge> 
               </Card.Header>
               <Card.Img
                 src={recipeSubmitted.image}
@@ -193,11 +197,12 @@ function IngredientCreateForm() {
               />
               <Card.Body>
                 <Card.Text>
-                  Cooking time: {recipeSubmitted.cooking_time}min Preparation
-                  time: {recipeSubmitted.prep_time}min
+                  <div><strong>Cooking time:</strong> {recipeSubmitted.cooking_time}min</div> 
+                  <div><strong>Preparation
+                  time:</strong> {recipeSubmitted.prep_time}min</div>
                 </Card.Text>
                 <Card.Text>
-                  Instructions: {recipeSubmitted.instructions}
+                  <strong>Instructions:</strong> {recipeSubmitted.instructions}
                 </Card.Text>
               </Card.Body>
             </Card>
