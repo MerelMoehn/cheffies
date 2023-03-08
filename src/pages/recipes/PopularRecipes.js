@@ -32,10 +32,10 @@ const PopularRecipes = () => {
         <>
         <div className="my-3 d-flex flex-column">
             <p className={appStyles.Titles}>Top 5 Recipes:</p>
-            <ListGroup>
+            <ListGroup variant="flush">
           {(
             popularRecipes.results.slice(0, 5).map((recipe) => (
-                <ListGroup.Item>
+                <ListGroup.Item className={styles.Recipe}>
               <Link to={`/recipes/${recipe.id}`}>
                 <strong>{recipe.title}</strong>
               </Link>

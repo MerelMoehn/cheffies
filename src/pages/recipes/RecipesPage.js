@@ -46,7 +46,7 @@ function RecipesPage({ message, filter = "" }) {
   
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={7}>
+      <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile/>
         <i />
         <Form
@@ -87,7 +87,7 @@ function RecipesPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+      <Col md={3} className="d-none d-lg-block p-0 p-lg-2">
         <PopularRecipes />
         <PopularProfiles />
       </Col>

@@ -4,3 +4,12 @@
     border-radius: 2px;
     margin-bottom: 16px;
   }
+
+.Recipe {
+    color: #8F8E49;
+    border: 1px solid #8F8E49;
+}
+
+.Recipe:hover{
+    text-decoration: none;
+}
