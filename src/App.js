@@ -12,6 +12,9 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import IngredientCreateForm from "./pages/recipes/IngredientCreateForm";
 import RecipeEditForm from "./pages/recipes/RecipeEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -33,16 +36,20 @@ function App() {
             exact
             path="/feed"
             render={() => (
-              <RecipesPage message="No recipes found. Please adjust your search or follow a chef."
-              filter={`owner__followed__owner__profile=${profile_id}&`} />
+              <RecipesPage
+                message="No recipes found. Please adjust your search or follow a chef."
+                filter={`owner__followed__owner__profile=${profile_id}&`}
+              />
             )}
           />
           <Route
             exact
             path="/liked"
             render={() => (
-              <RecipesPage message="No recipes found. Please adjust your search or like a recipe!"
-              filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`} />
+              <RecipesPage
+                message="No recipes found. Please adjust your search or like a recipe!"
+                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+              />
             )}
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
@@ -52,14 +59,33 @@ function App() {
             path="/recipes/create"
             render={() => <RecipeCreateForm />}
           />
-            <Route
+          <Route
             exact
             path="/recipes/:id/ingredients"
             render={() => <IngredientCreateForm />}
           />
           <Route exact path="/recipes/:id" render={() => <RecipePage />} />
-          <Route exact path="/recipes/:id/edit" render={() => <RecipeEditForm />} />
+          <Route
+            exact
+            path="/recipes/:id/edit"
+            render={() => <RecipeEditForm />}
+          />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/edit/username"
+            render={() => <UsernameForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
