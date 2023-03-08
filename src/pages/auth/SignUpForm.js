@@ -7,9 +7,11 @@ import appStyles from "../../App.module.css";
 
 import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
     // This code is based on the Code Institute Walkthrough project: Moments
+    useRedirect('loggedIn');
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",

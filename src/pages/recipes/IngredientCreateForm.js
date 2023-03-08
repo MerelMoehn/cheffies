@@ -14,8 +14,10 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function IngredientCreateForm() {
+  useRedirect('loggedOut');
   const [errors, setErrors] = useState({});
   const { id } = useParams();
 
