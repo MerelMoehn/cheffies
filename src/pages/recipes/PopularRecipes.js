@@ -24,7 +24,7 @@ const PopularRecipes = () => {
 
   return (
     <Container
-      className={`${appStyles.Content}}`}
+    className={appStyles.Content}
     >
       {popularRecipes.results.length ? (
         <>

@@ -69,6 +69,7 @@ function ProfilePage() {
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
+          <p className="m-2">{profile?.bio}</p>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.recipe_count}</div>
@@ -140,6 +141,14 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
+            </>
+          ) : (
+            <Asset spinner />
+          )}
+        </Container>
+        <Container className={appStyles.Content}>
+          {hasLoaded ? (
+            <>
               {mainProfileRecipes}
             </>
           ) : (

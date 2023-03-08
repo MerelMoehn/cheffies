@@ -15,6 +15,7 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import PopularRecipes from "./PopularRecipes";
 
 function RecipesPage({ message, filter = "" }) {
     const [recipes, setRecipes] = useState({ results: [] });
@@ -87,6 +88,7 @@ function RecipesPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularRecipes />
         <PopularProfiles />
       </Col>
     </Row>
