@@ -88,7 +88,7 @@ const Recipe = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <Badge pill variant="secondary">
+            <Badge className={styles.Category} pill variant="secondary">
               Category: {category}
             </Badge>
             {is_owner && recipePage && (

@@ -23,6 +23,8 @@
     color: #1a1a1a;
   }
 
-  .TimeIcon {
-    color: #1a1a1a;
+  .Category {
+    background-color: #8F8E49;
+    font-size: 15px;
+    font-weight: 400;
   }
