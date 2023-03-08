@@ -118,7 +118,7 @@ const NavBar = () => {
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-right">
+          <Nav className="ml-auto text-right" style={{alignItems: 'center'}}>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
