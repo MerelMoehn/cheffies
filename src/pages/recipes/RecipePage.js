@@ -8,7 +8,7 @@ import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import appStyles from "../../App.module.css";
-import styles from "../../styles/Recipe.module.css";
+import styles from "../../styles/RecipePage.module.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recipe from "./Recipe";
@@ -54,8 +54,8 @@ function RecipePage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Recipe {...recipe.results[0]} setRecipes={setRecipe} recipePage />
-        <Container className={appStyles.Content}>
-          <p className={styles.Titles}>Ingredients:</p>
+        <Container className={`${appStyles.Content} ${styles.RecipeContent}`}>
+          <p className={appStyles.Titles}>Ingredients:</p>
           {ingredients.results.map((ingredient) => (
             <ul>
               <li key={ingredient.id}>
@@ -65,14 +65,14 @@ function RecipePage() {
             </ul>
           ))}
         </Container>
-        <Container className={appStyles.Content}>
-          <p className={styles.Titles}>Instructions:</p>
+        <Container className={`${appStyles.Content} ${styles.RecipeContent}`}>
+          <p className={appStyles.Titles}>Instructions:</p>
           {recipe.results.map((recipe) => (
             <p key={recipe.id}>{recipe.instructions}</p>
           ))}
         </Container>
         <Container className={appStyles.Content}>
-          <p className={styles.Titles}>Comments:</p>
+          <p className={appStyles.Titles}>Comments:</p>
           {currentUser ? (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
