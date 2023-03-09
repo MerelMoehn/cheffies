@@ -1,9 +1,20 @@
 .Container {
-    min-height: 343px;
-  }
-  
-  .Category {
-    background-color: #8F8E49;
-    font-size: 15px;
-    font-weight: 400;
-  }
+  min-height: 343px;
+}
+
+.Category {
+  background-color: #8f8e49;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.IngredientContent {
+  background-color: #ffffff;
+  border: 1px solid #dadadf;
+  border-radius: 2px;
+  margin-top: 16px;
+}
+
+.IngredientIcon {
+  font-size: 15px;
+}

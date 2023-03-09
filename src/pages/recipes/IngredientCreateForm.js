@@ -83,6 +83,12 @@ function IngredientCreateForm() {
     try {
       await axiosReq.post("/ingredients/", formData);
       handleDisplayIngredients();
+      setIngredientData({
+        recipe: id,
+        name: "",
+        amount_required: "",
+        measure_unit: "",
+      });
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -179,8 +185,8 @@ function IngredientCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" lg={6}>
+      <Row className="justify-content-between">
+        <Col className="py-2 p-0 p-md-4" lg={6}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
@@ -208,22 +214,28 @@ function IngredientCreateForm() {
             </Card>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-md-block p-0 p-md-2">
+        <Col md={5} lg={4} className="d-md-block p-0 p-md-4">
           <Container className={appStyles.Content}>{textFields}</Container>
-          <Container className={appStyles.Content}>
-            <h3>Ingredients:</h3>
+          <Container className={`${appStyles.Content}  ${styles.IngredientContent}`}>
+          <p className={appStyles.Titles}>Ingredients added:</p>
+          <ul>
             {ingredientSubmitted.results.map((ingredient) => (
+            <li>
               <p key={ingredient.id}>
-                {ingredient.amount_required}
-                {ingredient.measure_unit}
-                {ingredient.name}
+              {`${ingredient.amount_required}
+                ${ingredient.measure_unit}
+                 of 
+                ${ingredient.name}
+                `}
                 <i
-                  className="fas fa-trash-alt"
+                  className={`fas fa-trash-alt ${styles.IngredientIcon}`}
                   onClick={() => handleDelete(ingredient.id)}
                   aria-label="delete"
                 />
               </p>
+              </li>
             ))}
+            </ul>
           </Container>
         </Col>
       </Row>
