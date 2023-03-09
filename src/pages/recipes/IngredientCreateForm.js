@@ -46,6 +46,7 @@ function IngredientCreateForm() {
           axiosReq.get(`/recipes/${id}`),
         ]);
         setRecipeSubmitted(recipe);
+        handleDisplayIngredients();
       } catch (err) {
         console.log(err);
       }
