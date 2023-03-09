@@ -134,8 +134,8 @@ function ProfilePage() {
   );
 
   return (
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+    <Row className="justify-content-between">
+      <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
         <Container className={appStyles.Content}>
           {hasLoaded ? (

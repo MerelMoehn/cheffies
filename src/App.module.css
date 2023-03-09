@@ -1,11 +1,11 @@
 .App {
-    font-family:'Roboto', sans-serif;
-    background-color: #f9f9f9;
-    min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
 }
 
-.Main { 
-    padding-top: 70px;
+.Main {
+  padding-top: 70px;
 }
 
 .Titles {
@@ -14,52 +14,56 @@
 }
 
 .Content {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 2px;
-    border: 1px solid #E6E6E6;
-  }
-  
-  .SignImage {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .Image {
-    max-height: 40vh;
-    max-width: 100%;
-    object-fit: contain;
-  }
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #e6e6e6;
+}
+
+.SignImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
 
 * {
-    box-sizing: border-box;
-  }
-  
-  a {
-    color: #1A1A1A;
-  }
-  
-  a:hover i {
-    color: #8F8E49;
-    transition: color ease-in-out 0.2s;
-  }
+  box-sizing: border-box;
+}
 
-  a:hover {
-    font-style: italic;
-    text-decoration: none;
-    color: #8F8E49;
-  }
-  
-  i {
-    color: #46494E;
-    font-size: 1.6rem;
-    padding: 7px;
-    vertical-align: middle;
-  }
-  
-  i:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #8F8E49;
-  }
+a {
+  color: #1a1a1a;
+}
+
+a:hover i {
+  color: #8f8e49;
+  transition: color ease-in-out 0.2s;
+}
+
+a:hover {
+  font-style: italic;
+  text-decoration: none;
+  color: #8f8e49;
+}
+
+i {
+  color: #46494e;
+  font-size: 1.6rem;
+  padding: 7px;
+  vertical-align: middle;
+}
+
+i:hover {
+  cursor: pointer;
+  transition: color ease-in-out 0.3s;
+  color: #8f8e49;
+}
+
+.PopProfiles{
+  background-color: #E1E1E1;
+}
