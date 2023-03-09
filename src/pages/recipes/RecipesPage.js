@@ -47,7 +47,7 @@ function RecipesPage({ message, filter = "" }) {
   return (
     <Row className="h-100 d-flex justify-content-between">
       <Col className="py-2 p-0 p-lg-4" lg={6}>
-        <PopularProfiles mobile/>
+      <PopularRecipes />
         <i />
         <Form
           className={styles.SearchBar}
@@ -88,7 +88,6 @@ function RecipesPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-4">
-        <PopularRecipes />
         <PopularProfiles />
       </Col>
     </Row>

@@ -28,7 +28,6 @@ function IngredientCreateForm() {
   const [ingredientSubmitted, setIngredientSubmitted] = useState({
     results: [],
   });
-  console.log(ingredientSubmitted);
 
   const [ingredientData, setIngredientData] = useState({
     recipe: id,
@@ -38,6 +37,15 @@ function IngredientCreateForm() {
   });
   const { recipe, name, amount_required, measure_unit } = ingredientData;
   const history = useHistory();
+
+  const handleDisplayIngredients = async () => {
+    try {
+      const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
+      setIngredientSubmitted(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     const handleMount = async () => {
@@ -53,6 +61,9 @@ function IngredientCreateForm() {
     };
 
     handleMount();
+    
+    // the comment below was recommended by a tutor
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleChange = (event) => {
@@ -60,15 +71,6 @@ function IngredientCreateForm() {
       ...ingredientData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const handleDisplayIngredients = async () => {
-    try {
-      const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
-      setIngredientSubmitted(data);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   const handleSubmit = async (event) => {
@@ -88,7 +90,7 @@ function IngredientCreateForm() {
         recipe: id,
         name: "",
         amount_required: "",
-        measure_unit: "",
+        measure_unit: "g",
       });
     } catch (err) {
       console.log(err);
@@ -215,7 +217,7 @@ function IngredientCreateForm() {
             </Card>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-md-block p-0 p-md-4">
+        <Col md={5} lg={4} className="d-md-block p-0 p-lg-4">
           <Container className={appStyles.Content}>{textFields}</Container>
           <Container className={`${appStyles.Content}  ${styles.IngredientContent}`}>
           <p className={appStyles.Titles}>Ingredients added:</p>

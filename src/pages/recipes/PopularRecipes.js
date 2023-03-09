@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from "react-bootstrap/ListGroup";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PopularRecipes.module.css";
 import Asset from "../../components/Asset";
@@ -25,24 +25,29 @@ const PopularRecipes = () => {
   }, [id]);
 
   return (
-    <Container
-    className={`${appStyles.Content} ${styles.PopRecipesBack}`}
-    >
+    <Container className={`${appStyles.Content} ${styles.PopRecipesBack}`}>
       {popularRecipes.results.length ? (
         <>
-        <div className="my-3 d-flex flex-column">
+          <div className="d-flex flex-column">
             <p className={appStyles.Titles}>Top 5 Recipes:</p>
-            <ListGroup variant="flush">
-          {(
-            popularRecipes.results.slice(0, 5).map((recipe) => (
-                <ListGroup.Item className={styles.Recipe}>
-              <Link to={`/recipes/${recipe.id}`}>
-                <strong>{recipe.title}</strong>
-              </Link>
-              </ListGroup.Item>
-            ))
-          )}
-          </ListGroup>
+            <ListGroup>
+              {popularRecipes.results.slice(0, 5).map((recipe) => (
+                <ListGroup.Item key={recipe.id} className={styles.Recipe}>
+                  <Link to={`/recipes/${recipe.id}`}>
+                    <span>
+                      <img
+                        className={styles.RecipePicture}
+                        src={recipe.image}
+                        height="40"
+                        width="50"
+                        alt="recipe"
+                      />
+                    </span>
+                    <strong>{recipe.title}</strong>
+                  </Link>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
           </div>
         </>
       ) : (
