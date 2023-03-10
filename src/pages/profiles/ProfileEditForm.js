@@ -101,10 +101,7 @@ const ProfileEditForm = () => {
           {message}
         </Alert>
       ))}
-      <Button
-        className={btnStyles.Button}
-        onClick={() => history.goBack()}
-      >
+      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
         cancel
       </Button>
       <Button className={btnStyles.Button} type="submit">

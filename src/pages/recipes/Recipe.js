@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "../../styles/Recipe.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip, Badge } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Badge from "react-bootstrap/Badge";
+import Link from "react-router-dom/Link";
+import { useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { EditDropDown } from "../../components/EditDropDown";
@@ -104,7 +109,11 @@ const Recipe = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className={styles.Titles}><strong>{title}</strong></Card.Title>}
+        {title && (
+          <Card.Title className={styles.Titles}>
+            <strong>{title}</strong>
+          </Card.Title>
+        )}
         <span>Last updated: {updated_at}</span>
         {cooking_time && prep_time && (
           <Card.Text>

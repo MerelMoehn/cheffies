@@ -1,13 +1,16 @@
 import styles from "../styles/NavBar.module.css";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import NavLink from "react-router-dom/NavLink";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
+import Nav from "react-bootstrap/Nav";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();

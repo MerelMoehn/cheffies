@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 
 import styles from "../../styles/IngredientsCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -18,7 +18,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function IngredientCreateForm() {
-  useRedirect('loggedOut');
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const { id } = useParams();
 
@@ -61,7 +61,7 @@ function IngredientCreateForm() {
     };
 
     handleMount();
-    
+
     // the comment below was recommended by a tutor
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -197,8 +197,8 @@ function IngredientCreateForm() {
               <Card.Header>
                 <p className={appStyles.Titles}>{recipeSubmitted.title}</p>
                 <Badge className={styles.Category} pill variant="secondary">
-                {recipeSubmitted.category}
-            </Badge> 
+                  {recipeSubmitted.category}
+                </Badge>
               </Card.Header>
               <Card.Img
                 src={recipeSubmitted.image}
@@ -206,9 +206,14 @@ function IngredientCreateForm() {
               />
               <Card.Body>
                 <Card.Text>
-                  <div><strong>Cooking time:</strong> {recipeSubmitted.cooking_time}min</div> 
-                  <div><strong>Preparation
-                  time:</strong> {recipeSubmitted.prep_time}min</div>
+                  <div>
+                    <strong>Cooking time:</strong>{" "}
+                    {recipeSubmitted.cooking_time}min
+                  </div>
+                  <div>
+                    <strong>Preparation time:</strong>{" "}
+                    {recipeSubmitted.prep_time}min
+                  </div>
                 </Card.Text>
                 <Card.Text>
                   <strong>Instructions:</strong> {recipeSubmitted.instructions}
@@ -219,25 +224,27 @@ function IngredientCreateForm() {
         </Col>
         <Col md={5} lg={4} className="d-md-block p-0 p-lg-4">
           <Container className={appStyles.Content}>{textFields}</Container>
-          <Container className={`${appStyles.Content}  ${styles.IngredientContent}`}>
-          <p className={appStyles.Titles}>Ingredients added:</p>
-          <ul>
-            {ingredientSubmitted.results.map((ingredient) => (
-            <li>
-              <p key={ingredient.id}>
-              {`${ingredient.amount_required}
+          <Container
+            className={`${appStyles.Content}  ${styles.IngredientContent}`}
+          >
+            <p className={appStyles.Titles}>Ingredients added:</p>
+            <ul>
+              {ingredientSubmitted.results.map((ingredient) => (
+                <li>
+                  <p key={ingredient.id}>
+                    {`${ingredient.amount_required}
                 ${ingredient.measure_unit}
                  of 
                 ${ingredient.name}
                 `}
-                <i
-                  className={`fas fa-trash-alt ${styles.IngredientIcon}`}
-                  onClick={() => handleDelete(ingredient.id)}
-                  aria-label="delete"
-                />
-              </p>
-              </li>
-            ))}
+                    <i
+                      className={`fas fa-trash-alt ${styles.IngredientIcon}`}
+                      onClick={() => handleDelete(ingredient.id)}
+                      aria-label="delete"
+                    />
+                  </p>
+                </li>
+              ))}
             </ul>
           </Container>
         </Col>

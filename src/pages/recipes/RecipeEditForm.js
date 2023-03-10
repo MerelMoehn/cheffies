@@ -13,7 +13,7 @@ import styles from "../../styles/RecipeCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
-import { Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
@@ -33,15 +33,32 @@ function RecipeEditForm() {
     recipeData;
   const imageInput = useRef(null);
   const history = useHistory();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/recipes/${id}/`);
-        const { title, instructions, image, category, cooking_time, prep_time, is_owner } = data;
+        const {
+          title,
+          instructions,
+          image,
+          category,
+          cooking_time,
+          prep_time,
+          is_owner,
+        } = data;
 
-        is_owner ? setRecipeData({ title, instructions, image, category, cooking_time, prep_time }) : history.push("/");
+        is_owner
+          ? setRecipeData({
+              title,
+              instructions,
+              image,
+              category,
+              cooking_time,
+              prep_time,
+            })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -74,14 +91,14 @@ function RecipeEditForm() {
     formData.append("title", title);
     formData.append("instructions", instructions);
     if (imageInput?.current?.files[0]) {
-        formData.append("image", imageInput.current.files[0]);
-      }
+      formData.append("image", imageInput.current.files[0]);
+    }
     formData.append("cooking_time", cooking_time);
     formData.append("prep_time", prep_time);
     formData.append("category", category);
 
     try {
-      const {data}= await axiosReq.put(`/recipes/${id}/`, formData);
+      const { data } = await axiosReq.put(`/recipes/${id}/`, formData);
       history.push(`/recipes/${data.id}/ingredients`);
     } catch (err) {
       console.log(err);

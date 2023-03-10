@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Media } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import Media from "react-bootstrap/Media";
+import Link from "react-router-dom/Link";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
 import { EditDropDown } from "../../components/EditDropDown";

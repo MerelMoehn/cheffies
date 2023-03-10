@@ -18,7 +18,8 @@ import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import Recipe from "../recipes/Recipe";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -29,7 +30,7 @@ function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
-  const { setProfileData, handleFollow, handleUnfollow} = useSetProfileData();
+  const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
@@ -38,11 +39,11 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileRecipes }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/recipes/?owner__profile=${id}`),
-          
-        ]);
+        const [{ data: pageProfile }, { data: profileRecipes }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/recipes/?owner__profile=${id}`),
+          ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
@@ -58,7 +59,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -117,7 +118,11 @@ function ProfilePage() {
       {profileRecipes.results.length ? (
         <InfiniteScroll
           children={profileRecipes.results.map((recipe) => (
-            <Recipe key={recipe.id} {...recipe} setRecipes={setProfileRecipes} />
+            <Recipe
+              key={recipe.id}
+              {...recipe}
+              setRecipes={setProfileRecipes}
+            />
           ))}
           dataLength={profileRecipes.results.length}
           loader={<Asset spinner />}
@@ -138,22 +143,10 @@ function ProfilePage() {
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
         <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
+          {hasLoaded ? <>{mainProfile}</> : <Asset spinner />}
         </Container>
         <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfileRecipes}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
+          {hasLoaded ? <>{mainProfileRecipes}</> : <Asset spinner />}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

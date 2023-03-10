@@ -18,36 +18,38 @@ import PopularProfiles from "../profiles/PopularProfiles";
 import PopularRecipes from "./PopularRecipes";
 
 function RecipesPage({ message, filter = "" }) {
-    const [recipes, setRecipes] = useState({ results: [] });
-    const [hasLoaded, setHasLoaded] = useState(false);
-    const { pathname } = useLocation();
-    const [query, setQuery] = useState("");
-  
-    useEffect(() => {
-      const fetchRecipes = async () => {
-        try {
-          const { data } = await axiosReq.get(`/recipes/?${filter}search=${query}`);
-          setRecipes(data);
-          setHasLoaded(true);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-  
-      setHasLoaded(false);
-      const timer = setTimeout(() => {
-        fetchRecipes();
-      }, 500);
-  
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [filter, query, pathname]);
-  
+  const [recipes, setRecipes] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const { data } = await axiosReq.get(
+          `/recipes/?${filter}search=${query}`
+        );
+        setRecipes(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchRecipes();
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
+
   return (
     <Row className="h-100 d-flex justify-content-between">
       <Col className="py-2 p-0 p-lg-4" lg={6}>
-      <PopularRecipes />
+        <PopularRecipes />
         <i />
         <Form
           className={styles.SearchBar}
@@ -64,16 +66,14 @@ function RecipesPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {recipes.results.length ? (
-                <InfiniteScroll 
-                children={
-              recipes.results.map((recipe) => (
-                <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
-              ))
-              }
-              dataLength={recipes.results.length}
-              loader={<Asset spinner/>}
-              hasMore={!!recipes.next}
-              next={() => fetchMoreData(recipes, setRecipes)}
+              <InfiniteScroll
+                children={recipes.results.map((recipe) => (
+                  <Recipe key={recipe.id} {...recipe} setRecipes={setRecipes} />
+                ))}
+                dataLength={recipes.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!recipes.next}
+                next={() => fetchMoreData(recipes, setRecipes)}
               />
             ) : (
               <Container className={appStyles.Content}>

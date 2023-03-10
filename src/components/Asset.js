@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 import styles from "../styles/Asset.module.css";
 
 // This code is from Code Institute Walkthrough project Moments

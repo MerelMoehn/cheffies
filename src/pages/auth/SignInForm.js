@@ -1,18 +1,25 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect('loggedIn');
+  useRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -29,6 +36,7 @@ function SignInForm() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
@@ -59,7 +67,14 @@ function SignInForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
-              <Form.Control className={styles.Input} type="text" placeholder="Enter Username" name="username" value={username} onChange={handleChange} />
+              <Form.Control
+                className={styles.Input}
+                type="text"
+                placeholder="Enter Username"
+                name="username"
+                value={username}
+                onChange={handleChange}
+              />
             </Form.Group>
             {errors.username?.map((message, idx) => (
               <Alert variant="danger" key={idx}>
@@ -69,7 +84,14 @@ function SignInForm() {
 
             <Form.Group controlId="password">
               <Form.Label className="d-none">password</Form.Label>
-              <Form.Control className={styles.Input} type="password" placeholder="Enter Password" name="password" value={password} onChange={handleChange}/>
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+              />
             </Form.Group>
             {errors.password1?.map((message, idx) => (
               <Alert key={idx} variant="danger">
@@ -77,7 +99,10 @@ function SignInForm() {
               </Alert>
             ))}
 
-            <Button className={`${btnStyles.Button} ${btnStyles.Stretch}`} type="submit">
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Stretch}`}
+              type="submit"
+            >
               Sign In!
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
@@ -89,7 +114,7 @@ function SignInForm() {
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signup">
-           Don't have an account yet? <span>Sign up!</span>
+            Don't have an account yet? <span>Sign up!</span>
           </Link>
         </Container>
       </Col>
