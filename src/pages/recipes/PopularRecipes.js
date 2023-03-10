@@ -18,7 +18,7 @@ const PopularRecipes = () => {
         const { data } = await axiosReq.get("/recipes/?ordering=-likes_count");
         setPopularRecipes(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();

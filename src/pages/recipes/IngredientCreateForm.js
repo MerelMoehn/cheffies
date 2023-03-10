@@ -43,7 +43,7 @@ function IngredientCreateForm() {
       const { data } = await axiosReq.get(`/ingredients/?recipe=${id}`);
       setIngredientSubmitted(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -56,7 +56,7 @@ function IngredientCreateForm() {
         setRecipeSubmitted(recipe);
         handleDisplayIngredients();
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -93,7 +93,7 @@ function IngredientCreateForm() {
         measure_unit: "g",
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -105,7 +105,7 @@ function IngredientCreateForm() {
       await axiosRes.delete(`/ingredients/${ingredientId}/`);
       handleDisplayIngredients();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

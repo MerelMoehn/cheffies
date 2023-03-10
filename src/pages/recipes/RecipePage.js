@@ -43,7 +43,7 @@ function RecipePage() {
         setIngredients(ingredients);
         setComments(comments);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
