@@ -35,11 +35,10 @@ const NavBar = () => {
       <NavDropdown
         title={
           <span>
-            <i className={`fa-solid fa-bars ${styles.NavIcon}`}></i>
+            <i data-testid="nav-dropdown" className={`fa-solid fa-bars ${styles.NavIcon}`}></i>
           </span>
         }
         id="basic-nav-dropdown"
-        data-testid="dropdown-menu"
       >
         <NavDropdown.Item>
           <NavLink
@@ -68,7 +67,7 @@ const NavBar = () => {
             <i className="fas fa-heart"></i>Liked
           </NavLink>
         </NavDropdown.Item>
-        <NavDropdown.Item data-testid="sign-out">
+        <NavDropdown.Item>
           <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
             <i className="fas fa-sign-out-alt"></i>Sign out
           </NavLink>
