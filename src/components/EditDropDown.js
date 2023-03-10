@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     <i
     className="fas fa-ellipsis-v"
+      data-testid="edit-recipe"
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
@@ -46,7 +47,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   export function ProfileEditDropdown({ id }) {
     const history = useHistory();
     return (
-      <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
+      <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left" >
         <Dropdown.Toggle as={ThreeDots} />
         <Dropdown.Menu>
           <Dropdown.Item

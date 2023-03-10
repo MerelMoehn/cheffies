@@ -12,7 +12,7 @@ export const handlers = [
         first_name: "",
         last_name: "",
         profile_id: 8,
-        profile_image: "https://res.cloudinary.com/duz5vkvkt/image/upload/v1/media/images/charlesdeluvio-D-vDQMTfAAU-unsp"
+        profile_image: "https://res.cloudinary.com/duz5vkvkt/image/upload/v1/media/images/charlesdeluvio-D-vDQMTfAAU-unsp",
       })
     );
   }),
