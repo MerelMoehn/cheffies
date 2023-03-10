@@ -16,8 +16,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import PopularRecipes from "./PopularRecipes";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 function RecipesPage({ message, filter = "" }) {
+  const currentUser = useCurrentUser();
+
   const [recipes, setRecipes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -44,7 +48,7 @@ function RecipesPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100 d-flex justify-content-between">
