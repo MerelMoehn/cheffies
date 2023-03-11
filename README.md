@@ -153,6 +153,7 @@ This application has several features which I will highlight per page.
   - Go to the detail page of a specific user
 - A logged-in user on the 'Home' page can make us of the following features:
   - All the functionalities named above
+  - Search for a recipe based on username, recipe name, ingredient
   - Like a recipe, if the user is not the owner of the recipe
   - Select the 'add' button to add a recipe
   - Navigate to 'Feed' to see all the posts of the users they are following
