@@ -118,26 +118,39 @@ The total number of issues (including bugs) created are: 41
   | [Adding & Viewing Recipe](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+sort%3Acreated-asc+label%3A%22Adding+%26+Viewing+Recipe%22+is%3Aclosed) | 
  | 9 | Logged-in user | I can create recipes | share my recipes with the world! | 
  | 10 | Logged-in user  | view the details of a single recipe | learn more about it| 
-  | [Manage Bookcase](https://github.com/MerelMoehn/favoreads/issues?q=label%3A%22Manage+Bookcase%22+is%3Aclosed) | 
- | 14 | Registered User | Update the reading status of my book | Show others an up to date bookcase | 
- | 15 | Registered User | Delete a book out of my bookcase | Show others an up to date bookcase |
- | 16 | Registered User | Automatically add a submitted book to my bookcase | So that I don't have to do this manually |
- | 17 | Registered User | See a confirmation message of my action | So that I know what is happening |
- | [Account Management](https://github.com/MerelMoehn/favoreads/issues?q=label%3A%22Account+management%22+is%3Aclosed) | 
- | 18 | Unregistered User | Easily register for an account | Join this book community | 
- | 19 | Registered User | Easily login or logout | View bookcases, upload books, and manage my bookcase | 
- | 20 | Registered User | Easily recover my password | Access my account even if I've forgotten my password | 
- | 21 | Unregistered User | Get an impression of the application from the homepage | Understand what the project is about | 
-  | [Project Prerequisites](https://github.com/MerelMoehn/favoreads/issues?q=label%3A%22project+prerequisites%22+is%3Aclosed) | 
- | 22 | Developer | Set up my project | Build the base layout of my application |
- | 23 | Developer | Create the Data Models | Support my application with data | 
- | 24 | Developer | Deploy my application early | Check frequently if everything is working properly | 
- | 25 | Developer | Create automated tests | Ensure a reliable application | 
- | 26 | Developer | Create understandable code via commenting | Help other developers understand it |
-  | [Documentation](https://github.com/MerelMoehn/favoreads/issues?q=label%3Adocumentation+is%3Aclosed) |
-| 27| Developer | Create Wireframes | Ensure my application is properly designed | 
-| 28 | Developer | Create a LucidChart Data Model | Ensure my Data Models are designed & documented correctly | 
-| 29 | Developer | Document in a ReadMe file | Ensure my application is documented correctly & sufficiently | 
+  | [Like/Unlike Recipe](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+is%3Aclosed+sort%3Acreated-asc+label%3A%22Liking+a+recipe%22) | 
+ | 11 | Logged-in user | Like & unlike a recipe | Show others that I like it | 
+ | [Showing & Searching Recipes](https://github.com/MerelMoehn/cheffies/issues?q=label%3A%22Showing+%26+searching+Recipes%22+is%3Aclosed) | 
+ | 12 | User | view all the most recent recipes, ordered by most recently created first | can be up to date with the newest content | 
+ | 13 | User | search for recipes with keywords | find the recipes and user profiles I am most interested in. | 
+ | 14 | User | view the recipes I liked| find the recipe I enjoy the most | 
+ | 15 | User | view content filtered by users I follow | keep up to date with the recipes they are posting | 
+ | 16 | User | keep scrolling through the recipes on the site, that are loaded for me automatically | I don't have to click on "next page" etc | 
+ | 41 | User | search for a recipe based on ingredient | find recipes that contain that ingredient | 
+  | [The Recipe Page](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+is%3Aclosed+sort%3Acreated-asc+label%3A%22The+recipe+page%22) | 
+ | 17 | User | view the recipe page | read the comments & ingredients of the recipe |
+ | 18 | Recipe owner | edit my recipe and ingredients | make corrections or update my recipe after it was created | 
+ | 21 | User | read comments on recipes | can read what other users think about the recipes | 
+  | [Commenting](https://github.com/MerelMoehn/cheffies/issues?q=label%3ACommenting+is%3Aclosed) |
+| 19| Logged-in User | add comments to a recipe | share my thoughts about the recipe | 
+| 20 | User | see how long ago a comment was made | know how old a comment is | 
+| 22 | Owner of a comment | delete my comment | control removal of my comment from the application | 
+| 23 | Owner of a comment | edit my comment | fix or update my existing comment | 
+  | [User Profiles](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+sort%3Acreated-asc+is%3Aclosed+label%3A%22User+Profiles%22) |
+| 24 | User| view other users profiles | see their recipes and learn more about them | 
+| 25 | User | see a list of the most followed profiles | that I can see which profiles are popular | 
+| 26 | User | view statistics about a specific user: bio, number of posts, follows and users followed | learn more about them | 
+| 28 | User | view all the recipes by a specific user | that I can catch up on their latest recipes, or decide I want to follow them | 
+| 29 | Logged-in user | can edit my profile | change my profile picture and bio| 
+| 30 | Logged-in user | update my username and password | change my display name and keep my profile secure | 
+  | [(un)following)](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+is%3Aclosed+sort%3Acreated-asc+label%3A%28un%29following) |
+| 27 | Logged-in user | follow and unfollow other users | see and remove recipes by specific users in my recipes feed | 
+  | [Adding & viewing Ingredients](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+sort%3Acreated-asc+is%3Aclosed+label%3A%22Adding+%26+viewing+Ingredients%22) |
+| 31 | Logged-in user | create ingredients | complete & share my recipes with the world! |
+| 32 | Ingredient owner | delete an ingredient | if I make a mistake I can delete and re-submit after an ingredient was created |
+
+
+
 
 # Features
 This application has several features which I will highlight per page.
