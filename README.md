@@ -6,7 +6,8 @@ In this document I will explain the reason and approach behind the Cheffies app.
 
 Cheffies is an application where users can create their own online recipes while also being able to see the recipes of other users. Via commenting and likes the users can engage with each other and share their recommendations.
 
-Please note, this project is fairly similar to the walkthrough project Moments of Code Institute as I used that as baseline. I have tried to customize this project as far as possible within the timeline I had. The main customizations are the following:
+Please note, this project is fairly similar to the walkthrough project Moments of Code Institute as I used that as baseline. As I found the React module fairly difficult I decided to focus on a few key deviation while also being able to use the Moments app as guideline. I have tried to customize this project as far as possible within the timeline I had. 
+The main customizations are the following:
 - The Recipe model & creation form: the recipe deviates from a post by having instructions, a category, a cooking & preparation time, and a foreign key to ingredients. The form for creating a recipe is therefore also different and the same applies for the recipe page
 - The Ingredient model & creation process: the model is completely novel and the creation of the ingredients and thus the ingredient creation for are completely custom. The creation of a recipe is a two step process which differs significantly from the Moments project.
 - The Popular Recipe display: the top 5 recipe display is a new feature, though based on the Popular Users section. It deviates from that section by the amount displayed (5 vs 10), the layout, and the API call that needs to be made.
@@ -62,9 +63,6 @@ The app can be accessed via the following link: [Click to go to Website](https:/
   * [Acknowledgments](#acknowledgements)
 
 
-
-
-
 # General introduction and instructions
 
 ## Project Approach
@@ -73,7 +71,6 @@ This application is built using an agile approach. Therefore, the functionalitie
 ## Epics & labels
 The application features were broken down into Epics and hence in User Stories. 
 For each User Story, an issue was created. The corresponding Epic was depicted via a label.
-There were two additional labels: Front-End, Back-End. For each User Story it was often the case that there were some BE and FE functionalities. Therefore, most User Stories were split into two User Stories, one for BE, one for FE.
 
 [All Epics/labels can be viewed here.](https://github.com/MerelMoehn/cheffies/labels)
 The following Epics were defined:
@@ -92,11 +89,6 @@ The following Epics were defined:
 
 ## Project Planning
 The project was planned and built in four sprints each consisting of one week. The project tool used was GitHub Projects & Issues. The issues were mapped on a kanban board using labels and swimming lanes.
-
-When I started working on an User Story, the story was added to the milestone and dragged and dropped into "in progress", when finished, the story was dragged & dropped into the "done" lane.
-To clarify, I only noticed when having finished 95% of my project that setting a story to 'done' did not close the story. Therefore most of the stories have the same closing date.
-
-I decided to focus on creating the main back-end functionalities first before focusing on front-end. This decision was made based on the availability of support during the Christmas holidays. 
 
 [View stories/bugs included in sprint 1.](https://github.com/MerelMoehn/cheffies/milestone/1?closed=1)
 [View stories/bugs included in sprint 2.](https://github.com/MerelMoehn/cheffies/milestone/2?closed=1)
@@ -176,15 +168,15 @@ This application has several features which I will highlight per page.
   - Search for a recipe based on username, recipe name, ingredient
   - Like a recipe, if the user is not the owner of the recipe
   - Select the 'add' button to add a recipe
-  - Navigate to 'Feed' to see all the posts of the users they are following
-  - Navigate to 'Liked' to see all the posts they liked
+  - Navigate to 'Feed' to see all the recipes of the users they are following
+  - Navigate to 'Liked' to see all the recipes they liked
 - A logged-in user on a specific 'Recipe' page can make us of the following features:
   - See the ingredients that are needed for that recipe
   - Seethe instructions that need to be followed for that recipe
   - See the comments that are placed by that recipe 
   - Like a recipe, if the user is not the owner of the recipe
   - Comment on a recipe, if the user is not the owner of the recipe
-  - Adjust the recipe, if the user is the owner of the recipe
+  - Adjust the recipe, if the user is the owner of the recipe. The user is then navigated to the edit form where the information is all previously filled in.
   - Adjust a comment, if the user is the owner of the comment
   - A logged-out user cannot see the comments
 - On the 'Add Recipe' page a logged-in user can make use of the following features:
@@ -201,6 +193,7 @@ This application has several features which I will highlight per page.
   - Add the amount required of an ingredient
   - Select the unit measurement of an ingredient
   - See all the previously added ingredients
+  - Being able to delete each ingredient
 - On the profile page a user can make use of the following features:
   - See the Name, Bio and Profile picture of that user profile
   - See the statistics regarding followers, following and amount of posts

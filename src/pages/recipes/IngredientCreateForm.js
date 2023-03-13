@@ -109,6 +109,16 @@ function IngredientCreateForm() {
     }
   };
 
+  const handleDone = () => {
+    if (ingredientSubmitted.results.length === 0) {
+      console.log(ingredientSubmitted);
+      setErrors('NoIngredients', { type: 'custom', message: 'Every recipe needs ingredients' });
+      console.log(errors)
+    } else {
+      history.push(`/recipes/${id}`);
+    }
+  };
+
   const textFields = (
     <div className="text-center">
       <Row>
@@ -177,12 +187,15 @@ function IngredientCreateForm() {
       <Button className={btnStyles.Button} type="submit">
         Add
       </Button>
-      <Button
-        className={btnStyles.Button}
-        onClick={() => history.push(`/recipes/${id}`)}
-      >
+      <Button className={btnStyles.Button} onClick={() => handleDone()}>
         Done
       </Button>
+      {/* <p>{errors.NoIngredients}</p>
+        {errors?.NoIngredients?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))} */}
     </div>
   );
 
@@ -216,13 +229,14 @@ function IngredientCreateForm() {
                   </div>
                 </Card.Text>
                 <Card.Text>
-                  <strong>Instructions:</strong> {recipeSubmitted.instructions}
+                  <strong>Instructions:</strong>
+                  {recipeSubmitted.instructions}
                 </Card.Text>
               </Card.Body>
             </Card>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-md-block p-0 p-lg-4">
+        <Col className="py-2 p-0 p-md-4" lg={4}>
           <Container className={appStyles.Content}>{textFields}</Container>
           <Container
             className={`${appStyles.Content}  ${styles.IngredientContent}`}
