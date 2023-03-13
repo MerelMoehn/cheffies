@@ -20,6 +20,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function IngredientCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
 
   const currentUser = useCurrentUser();
@@ -85,6 +86,7 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
+      setErrorMessage("");
       handleDisplayIngredients();
       setIngredientData({
         recipe: id,
@@ -112,8 +114,7 @@ function IngredientCreateForm() {
   const handleDone = () => {
     if (ingredientSubmitted.results.length === 0) {
       console.log(ingredientSubmitted);
-      setErrors('NoIngredients', { type: 'custom', message: 'Every recipe needs ingredients' });
-      console.log(errors)
+      setErrorMessage("Every recipe needs ingredients!");
     } else {
       history.push(`/recipes/${id}`);
     }
@@ -190,12 +191,7 @@ function IngredientCreateForm() {
       <Button className={btnStyles.Button} onClick={() => handleDone()}>
         Done
       </Button>
-      {/* <p>{errors.NoIngredients}</p>
-        {errors?.NoIngredients?.map((message, idx) => (
-            <Alert variant="warning" key={idx}>
-              {message}
-            </Alert>
-          ))} */}
+      {errorMessage && <Alert variant="warning">{errorMessage}</Alert>}
     </div>
   );
 
