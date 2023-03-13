@@ -6,6 +6,11 @@ In this document I will explain the reason and approach behind the Cheffies app.
 
 Cheffies is an application where users can create their own online recipes while also being able to see the recipes of other users. Via commenting and likes the users can engage with each other and share their recommendations.
 
+Please note, this project is fairly similar to the walkthrough project Moments of Code Institute as I used that as baseline. I have tried to customize this project as far as possible within the timeline I had. The main customizations are the following:
+- The Recipe model & creation form: the recipe deviates from a post by having instructions, a category, a cooking & preparation time, and a foreign key to ingredients. The form for creating a recipe is therefore also different and the same applies for the recipe page
+- The Ingredient model & creation process: the model is completely novel and the creation of the ingredients and thus the ingredient creation for are completely custom. The creation of a recipe is a two step process which differs significantly from the Moments project.
+- The Popular Recipe display: the top 5 recipe display is a new feature, though based on the Popular Users section. It deviates from that section by the amount displayed (5 vs 10), the layout, and the API call that needs to be made.
+
 The last update to this file was: **March 16, 2023**
 
 # Deployed project
@@ -148,9 +153,11 @@ The total number of issues (including bugs) created are: 41
   | [Adding & viewing Ingredients](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+sort%3Acreated-asc+is%3Aclosed+label%3A%22Adding+%26+viewing+Ingredients%22) |
 | 31 | Logged-in user | create ingredients | complete & share my recipes with the world! |
 | 32 | Ingredient owner | delete an ingredient | if I make a mistake I can delete and re-submit after an ingredient was created |
+  | [Documentation](https://github.com/MerelMoehn/cheffies/issues?q=is%3Aissue+is%3Aclosed+sort%3Acreated-asc+label%3Adocumentation) |
+| 31 | Developer | create and update README | share my project with others! |
+| 32 | Developer | create wireframes | share my design view on this project with others |
 
-
-
+The remaining tickets were created to report bugs and cound be found [Here](https://github.com/MerelMoehn/cheffies/labels/bug)
 
 # Features
 This application has several features which I will highlight per page.
