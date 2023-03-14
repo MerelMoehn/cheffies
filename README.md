@@ -37,8 +37,7 @@ The app can be accessed via the following link: [Click to go to Website](https:/
   * [Colourscheme](#colourscheme)
   * [WireFrames](#epics-&-labels)
   * [Typography](#typograpy)
-  * [Cards](#icons)
-  * [Icons](#cards)
+  * [Icons](#icons)
   * [Imagery](#imagery)
 - [Data Model](#the-data-model)
 - [Technology Used](#technology-used)
@@ -149,7 +148,7 @@ The total number of issues (including bugs) created are: 41
 | 31 | Developer | create and update README | share my project with others! |
 | 32 | Developer | create wireframes | share my design view on this project with others |
 
-The remaining tickets were created to report bugs and cound be found [Here](https://github.com/MerelMoehn/cheffies/labels/bug)
+The remaining tickets were created to report bugs and cound be found [Here](https://github.com/MerelMoehn/cheffies/issues?q=label%3Abug+is%3Aclosed)
 
 # Features
 This application has several features which I will highlight per page.
