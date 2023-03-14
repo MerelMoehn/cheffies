@@ -63,7 +63,8 @@ function SignInForm() {
       <Col className="my-auto mx-auto" md={4}>
         <Container className={`${appStyles.Content} p-4`}>
           <h1 className={styles.Header}>Sign In</h1>
-
+          <p className="text-center">Welcome to Cheffies! A recipe sharing social platform</p>
+          
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
