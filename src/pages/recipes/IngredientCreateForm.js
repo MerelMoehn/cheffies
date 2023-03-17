@@ -57,8 +57,6 @@ function IngredientCreateForm() {
         ]);
         setRecipeSubmitted(recipe);
         handleDisplayIngredients();
-        setAlertMessage("Recipe created!");
-        setShow(true);
       } catch (err) {
         // console.log(err);
       }

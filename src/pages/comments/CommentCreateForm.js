@@ -3,6 +3,7 @@ import Link from "react-router-dom/Link";
 
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Alert from "react-bootstrap/Alert";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
@@ -13,6 +14,8 @@ import { axiosRes } from "../../api/axiosDefaults";
 function CommentCreateForm(props) {
   const { recipe, setRecipe, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -38,6 +41,8 @@ function CommentCreateForm(props) {
         ],
       }));
       setContent("");
+      setAlertMessage("Comment created!");
+      setShow(true);
     } catch (err) {
       // console.log(err);
     }
@@ -45,6 +50,11 @@ function CommentCreateForm(props) {
 
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>
+      {alertMessage && show && (
+        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+          {alertMessage}
+        </Alert>
+      )}
       <Form.Group>
         <InputGroup>
           <Link to={`/profiles/${profile_id}`}>
