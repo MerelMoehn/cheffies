@@ -20,7 +20,8 @@ import { useRedirect } from "../../hooks/useRedirect";
 function IngredientCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [show, setShow] = useState(false);
   const { id } = useParams();
 
   const currentUser = useCurrentUser();
@@ -56,6 +57,8 @@ function IngredientCreateForm() {
         ]);
         setRecipeSubmitted(recipe);
         handleDisplayIngredients();
+        setAlertMessage("Recipe created!");
+        setShow(true);
       } catch (err) {
         // console.log(err);
       }
@@ -86,7 +89,7 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
-      setErrorMessage("");
+      setAlertMessage("");
       handleDisplayIngredients();
       setIngredientData({
         recipe: id,
@@ -114,7 +117,8 @@ function IngredientCreateForm() {
   const handleDone = () => {
     if (ingredientSubmitted.results.length === 0) {
       console.log(ingredientSubmitted);
-      setErrorMessage("Every recipe needs ingredients!");
+      setAlertMessage("Every recipe needs ingredients!");
+      setShow(true);
     } else {
       history.push(`/recipes/${id}`);
     }
@@ -191,12 +195,16 @@ function IngredientCreateForm() {
       <Button className={btnStyles.Button} onClick={() => handleDone()}>
         Done
       </Button>
-      {errorMessage && <Alert variant="warning">{errorMessage}</Alert>}
     </div>
   );
 
   return (
     <Form onSubmit={handleSubmit}>
+      {alertMessage && show && (
+        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+          {alertMessage}
+        </Alert>
+      )}
       <Row className="justify-content-between">
         <Col className="py-2 p-0 p-md-4" lg={6}>
           <Container
