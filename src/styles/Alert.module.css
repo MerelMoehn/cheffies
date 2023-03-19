@@ -1,0 +1,6 @@
+.FixAlert {
+  position: fixed;
+  margin-top: 20px;
+  width: 90%;
+  z-index: 9999;
+}
