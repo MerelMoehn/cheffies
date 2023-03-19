@@ -16,15 +16,15 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function IngredientCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-  const [alertMessage, setAlertMessage] = useState("");
-  const [show, setShow] = useState(false);
   const { id } = useParams();
 
   const currentUser = useCurrentUser();
+  const { setAlert } = useAlert();
 
   const [recipeSubmitted, setRecipeSubmitted] = useState("");
   const [ingredientSubmitted, setIngredientSubmitted] = useState({
@@ -87,7 +87,6 @@ function IngredientCreateForm() {
 
     try {
       await axiosReq.post("/ingredients/", formData);
-      setAlertMessage("");
       handleDisplayIngredients();
       setIngredientData({
         recipe: id,
@@ -114,9 +113,7 @@ function IngredientCreateForm() {
 
   const handleDone = () => {
     if (ingredientSubmitted.results.length === 0) {
-      console.log(ingredientSubmitted);
-      setAlertMessage("Every recipe needs ingredients!");
-      setShow(true);
+      setAlert('Every recipe needs ingredients!', 'warning')
     } else {
       history.push(`/recipes/${id}`);
     }
@@ -198,11 +195,6 @@ function IngredientCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {alertMessage && show && (
-        <Alert variant="warning" onClose={() => setShow(false)} dismissible>
-          {alertMessage}
-        </Alert>
-      )}
       <Row className="justify-content-between">
         <Col className="py-2 p-0 p-md-4" lg={6}>
           <Container

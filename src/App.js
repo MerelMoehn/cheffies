@@ -16,6 +16,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import PageNotFound from "./components/PageNotFound";
+import AlertPopup from "./components/AlertPopup";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -25,6 +26,7 @@ function App() {
     <div className={styles.App}>
       <NavBar />
       <Container fluid className={styles.Main}>
+      <AlertPopup />
         <Switch>
           <Route
             exact
