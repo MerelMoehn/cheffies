@@ -338,8 +338,11 @@ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloni
 ### Bootstrap:
   - I have used Bootstrap classes throughout my project, including for layout utilities and cards. I sourced code from the Bootstrap documentation when building the Navbar, Cards, Dropdown, and pagination.
 
-## Icon
+### Icon
 The Icon has been made by Iconixar and I got it from https://www.flaticon.com/free-icon/chef_2413341?related_id=2413004&origin=search
+
+### Global alert message
+This code for the global alert message is based on Jeffrey Yu's blog: https://dev.to/jeffreythecoder/set-up-react-global-alert-popup-in-10mins-36l3
 
 ## Acknowledgements
 - Thank you to my mentor for helpful feedback, industry insights and recommended tools.
