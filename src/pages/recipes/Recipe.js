@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { EditDropDown } from "../../components/EditDropDown";
+import useAlert from "../../hooks/useAlert";
 
 const Recipe = (props) => {
   const {
@@ -34,6 +35,7 @@ const Recipe = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const { setAlert } = useAlert();
 
   const handleEdit = () => {
     history.push(`/recipes/${id}/edit`);
@@ -42,9 +44,11 @@ const Recipe = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/recipes/${id}/`);
-      history.goBack();
+      history.push(`/`);
+      setAlert('Your recipe is deleted!', 'success')
     } catch (err) {
       // console.log(err);
+      setAlert('Something went wrong, try again!', 'danger')
     }
   };
 

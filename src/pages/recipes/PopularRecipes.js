@@ -7,10 +7,12 @@ import ListGroup from "react-bootstrap/ListGroup";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PopularRecipes.module.css";
 import Asset from "../../components/Asset";
+import useAlert from "../../hooks/useAlert";
 
 const PopularRecipes = () => {
   const { id } = useParams();
   const [popularRecipes, setPopularRecipes] = useState({ results: [] });
+  const { setAlert } = useAlert();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -19,10 +21,11 @@ const PopularRecipes = () => {
         setPopularRecipes(data);
       } catch (err) {
         // console.log(err);
+        setAlert("Something went wrong, try again!", "danger");
       }
     };
     handleMount();
-  }, [id]);
+  }, [id, setAlert]);
 
   return (
     <Container className={`${appStyles.Content} ${styles.PopRecipesBack}`}>

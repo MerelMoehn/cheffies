@@ -25,6 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/EditDropDown";
+import useAlert from "../../hooks/useAlert";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -35,6 +36,7 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
   const [profileRecipes, setProfileRecipes] = useState({ results: [] });
+  const { setAlert } = useAlert();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,10 +54,11 @@ function ProfilePage() {
         setHasLoaded(true);
       } catch (err) {
         // console.log(err);
+        setAlert("Something went wrong, try again!", "danger");
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+  }, [id, setProfileData, setAlert]);
 
   const mainProfile = (
     <>

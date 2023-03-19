@@ -17,9 +17,11 @@ import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import useAlert from "../../hooks/useAlert";
 
 function RecipeEditForm() {
   const [errors, setErrors] = useState({});
+  const { setAlert } = useAlert();
 
   const [recipeData, setRecipeData] = useState({
     title: "",
@@ -61,11 +63,12 @@ function RecipeEditForm() {
           : history.push("/");
       } catch (err) {
         // console.log(err);
+        setAlert("Something went wrong, try again!", "danger");
       }
     };
 
     handleMount();
-  }, [history, id]);
+  }, [history, id, setAlert]);
 
   const handleChange = (event) => {
     setRecipeData({

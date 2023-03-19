@@ -17,10 +17,12 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import PopularRecipes from "./PopularRecipes";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import useAlert from "../../hooks/useAlert";
 
 
 function RecipesPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
+  const { setAlert } = useAlert();
 
   const [recipes, setRecipes] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -37,6 +39,7 @@ function RecipesPage({ message, filter = "" }) {
         setHasLoaded(true);
       } catch (err) {
         // console.log(err);
+        setAlert("Something went wrong, try again!", "danger");
       }
     };
 
@@ -48,7 +51,7 @@ function RecipesPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, currentUser]);
+  }, [filter, query, pathname, currentUser, setAlert]);
 
   return (
     <Row className="h-100 d-flex justify-content-between">

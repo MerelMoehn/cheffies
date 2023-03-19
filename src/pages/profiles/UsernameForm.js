@@ -16,10 +16,12 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import useAlert from "../../hooks/useAlert";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
+  const { setAlert } = useAlert();
 
   const history = useHistory();
   const { id } = useParams();
@@ -46,6 +48,7 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
+      setAlert("Your username is updated!", "success");
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);

@@ -108,6 +108,7 @@ function IngredientCreateForm() {
       handleDisplayIngredients();
     } catch (err) {
       // console.log(err);
+      setAlert("Something went wrong, try again!", "danger");
     }
   };
 

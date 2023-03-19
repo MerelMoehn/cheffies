@@ -18,6 +18,7 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import PopularRecipes from "./PopularRecipes";
+import useAlert from "../../hooks/useAlert";
 
 function RecipePage() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ function RecipePage() {
   const [ingredients, setIngredients] = useState({
     results: [],
   });
+  const { setAlert } = useAlert();
 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
@@ -44,11 +46,12 @@ function RecipePage() {
         setComments(comments);
       } catch (err) {
         // console.log(err);
+        setAlert("Something went wrong, try again!", "danger");
       }
     };
 
     handleMount();
-  }, [id]);
+  }, [id, setAlert]);
 
   return (
     <Row className="h-100 d-flex justify-content-between">
